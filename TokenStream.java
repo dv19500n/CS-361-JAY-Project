@@ -14,7 +14,7 @@ import java.io.IOException;
 public class TokenStream {
 
 	// READ THE COMPLETE FILE FIRST
-	// You will need to adapt it to KAY, NOT JAY
+	// You will need to adapt it to JAY
 
 	// Instance variables 
 	private boolean isEof = false; // is end of file
@@ -190,7 +190,8 @@ public class TokenStream {
 	}
 
 	private boolean isKeyword(String s) {
-		return (s.equals("bool") || s.equals("while"));
+		// done
+		return (s.equals("boolean") || s.equals("else") || s.equals("if") || s.equals("int") || s.equals("main") || s.equals("void") || s.equals("while")) ;
 	}
 
 	private boolean isWhiteSpace(char c) {
@@ -213,12 +214,13 @@ public class TokenStream {
 	}
 
 	private boolean isSeparator(char c) {
-		return (c == ';' || c == ',');
+		// done
+		return (c == ',' || c == ';'|| c=='}' || c=='{' || c=='(' || c==')');
 	}
 
 	private boolean isOperator(char c) {
-		// Checks for characters that start operators
-		return false;
+		// done
+		return (c =='=' || c=='+'|| c=='-' || c=='*' ||c=='/' || c=='<'|| c=='>' || c=='!' || c=='&' || c=='|');
 	}
 
 	private boolean isLetter(char c) {
@@ -226,8 +228,8 @@ public class TokenStream {
 	}
 
 	private boolean isDigit(char c) {
-		// TODO TO BE COMPLETED
-		return false;
+		// done
+		return (c >= 0 && c <=9 );
 	}
 
 	public boolean isEndofFile() {
