@@ -57,7 +57,7 @@ public class TokenStream {
 			if (nextChar == '/') { // If / is followed by another /
 				// skip rest of line - it's a comment.
 				// TODO TO BE COMPLETED
-				while (nextChar != '\n' && nextChar != '\r' && nextCHar != '\f' && nextChar != -1){
+				while (nextChar != '\n' && nextChar != '\r' && nextChar != '\f' && nextChar != -1){
 					nextChar=readChar();
 				}
 				// look for <cr>, <lf>, <ff>
@@ -81,7 +81,7 @@ public class TokenStream {
 				nextChar=readChar();
 				if (nextChar == '='){
 					t.setValue(t.getValue() + nextChar);
-					nextChar=readChar():
+					nextChar=readChar();
 					return t;
 				}else{
 					t.setType("Operator");
