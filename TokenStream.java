@@ -154,10 +154,10 @@ public class TokenStream {
 
 		// Then check for a separator
 		if (isSeparator(nextChar)) {
-			t.setType("Separator");
-			// TODO TO BE COMPLETED
-			t.setValue(t.getValue() + nextChar);
-			return t;
+    		t.setType("Separator");
+    		t.setValue(t.getValue() + nextChar);
+    		nextChar = readChar();
+    		return t;
 		}
 
 		// Then check for an identifier, keyword, or literal.
@@ -265,10 +265,9 @@ public class TokenStream {
 		return (c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z');
 	}
 
-	private boolean isDigit(char c) {
-		// done
-		return (c >= 0 && c <=9 );
-	}
+private boolean isDigit(char c) {
+    return (c >= '0' && c <= '9');
+}
 
 	public boolean isEndofFile() {
 		return isEof;
