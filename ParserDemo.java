@@ -1,16 +1,15 @@
+
 public class ParserDemo {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		// TO COMPLETE
-		// Change the path!
-		TokenStream tStream = new TokenStream("C:\\\\Users\\\\cscharff\\\\eclipse-workspace\\\\ScannerSolution\\\\src\\\\prog1.jay");
+        // Change the path!
+		TokenStream tStream = new TokenStream("parserTest.jay");
 
-		ConcreteSyntax cSyntax = new ConcreteSyntax(tStream);
-		Program p = cSyntax.program();
-		System.out.println(p.display());
-		System.out.println("test");
+        ConcreteSyntax cSyntax = new ConcreteSyntax(tStream);
+        Program p = cSyntax.program();
+        System.out.println(p.display());
 
-	}
+    }
 
 }

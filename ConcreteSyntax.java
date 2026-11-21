@@ -130,8 +130,8 @@ public Program program() {
 		} else if (token.getValue().equals("if")) // IfStatement
 			s = ifStatement();
 		else if (token.getValue().equals("while")) {
-			// WhileStatement
-			// TODO TO BE COMPLETED
+   			 // WhileStatement
+    		s = whileStatement();
 		} else if (token.getType().equals("Identifier")) {
     		s = assignment();
 		} else
@@ -291,19 +291,37 @@ private Assignment assignment() {
 		return e;
 	}
 
-	private Conditional ifStatement() {
-		// IfStatement --> if ( Expression ) Statement { else Statement }opt
-		Conditional c = new Conditional();
-		// TODO TO BE COMPLETED
-		return c;
-	}
 
-	private Loop whileStatement() {
-		// WhileStatement --> while ( Expression ) Statement
-		Loop l = new Loop();
-		// TODO TO BE COMPLETED
-		return l;
-	}
+	private Conditional ifStatement() {
+    	// IfStatement --> if ( Expression ) Statement { else Statement }opt
+    	Conditional c = new Conditional();
+    	match("if");
+    	match("(");
+    	c.test = expression();
+    	match(")");
+    	c.thenbranch = statement();
+
+    	if (token.getValue().equals("else")) {
+        	match("else");
+        	c.elsebranch = statement();
+    }
+
+    return c;
+}
+
+
+	
+private Loop whileStatement() {
+    // WhileStatement --> while ( Expression ) Statement
+    Loop l = new Loop();
+    match("while");
+    match("(");
+    l.test = expression();
+    match(")");
+    l.body = statement();
+    return l;
+}
+
 
 	private boolean isInteger(String s) {
 		boolean result = true;

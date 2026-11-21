@@ -273,3 +273,4 @@ private boolean isDigit(char c) {
 		return isEof;
 	}
 }
+

@@ -325,3 +325,6 @@ class Operator {
 		return indent.display(getClass().toString().substring(6) + ": " + val);
 	}
 }
+
+
+
