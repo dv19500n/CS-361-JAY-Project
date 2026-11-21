@@ -43,16 +43,22 @@ public class ConcreteSyntax {
 
 	// Implementation of the Recursive Descent Parser
 
-	public Program program() {
-		// TODO TO BE COMPLETED 
-		// Program --> main '{' Declarations Statements '}'
-		String[] header = { };
-		Program p = new Program();
-		for (int i = 0; i < header.length; i++)
-			// bypass " main { "
-			match(header[i]);
-		return p;
-	}
+
+public Program program() {
+    // Program --> main '{' Declarations Statements '}'
+    String[] header = { "main", "{" };
+    Program p = new Program();
+    for (int i = 0; i < header.length; i++)
+        // bypass " main { "
+        match(header[i]);
+
+    p.decpart = declarations();
+    p.body = statements();
+    match("}");
+
+    return p;
+}
+
 
 	private Declarations declarations() {
 		// TODO TO BE COMPLETED 
@@ -126,8 +132,8 @@ public class ConcreteSyntax {
 		else if (token.getValue().equals("while")) {
 			// WhileStatement
 			// TODO TO BE COMPLETED
-		} else if (token.getType().equals("Identifier")) { // Assignment
-			// TODO TO BE COMPLETED
+		} else if (token.getType().equals("Identifier")) {
+    		s = assignment();
 		} else
 			throw new RuntimeException(SyntaxError("Statement"));
 		return s;
@@ -142,15 +148,21 @@ public class ConcreteSyntax {
 		return b;
 	}
 
-	private Assignment assignment() {
-		// Assignment --> Identifier := Expression ;
-		Assignment a = new Assignment();
-		if (token.getType().equals("Identifier")) {
-			// TODO TO BE COMPLETED
-		} else
-			throw new RuntimeException(SyntaxError("Identifier"));
-		return a;
-	}
+
+private Assignment assignment() {
+    // Assignment --> Identifier := Expression ;
+    Assignment a = new Assignment();
+    if (token.getType().equals("Identifier")) {
+        a.target = new Variable();
+        a.target.id = token.getValue();
+        token = input.nextToken();
+        match("=");
+        a.source = expression();
+        match(";");
+    } else
+        throw new RuntimeException(SyntaxError("Identifier"));
+    return a;
+}
 
 	private Expression expression() {
 		// Expression --> Conjunction { || Conjunction }*
