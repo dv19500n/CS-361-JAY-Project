@@ -175,7 +175,11 @@ public class ConcreteSyntax {
 		e = relation();
 		while (token.getValue().equals("&&")) {
 			b = new Binary();
-			// TODO TO BE COMPLETED
+			// DONE
+			b.term1=e;
+			b.op = new Operator(token.getValue());
+			token=input.nextToken();
+			b.term2=relation();			
 			e = b;
 		}
 		return e;
@@ -186,13 +190,16 @@ public class ConcreteSyntax {
 		Binary b;
 		Expression e;
 		e = addition();
-		// TODO TO BE COMPLETED
 		while (token.getValue().equals("<") || token.getValue().equals("<=")
 				|| token.getValue().equals(">=")
+			   	|| token.getValue().equals(">")
 				|| token.getValue().equals("==")
 				|| token.getValue().equals("<>")) {
 			b = new Binary();
-			// TODO TO BE COMPLETED
+			b.term1=e;
+			b.op = new Operator(token.getValue());
+			token =input.nextToken();
+			b.term2=addition();			
 			e = b;
 		}
 		return e;
@@ -204,7 +211,12 @@ public class ConcreteSyntax {
 		Expression e;
 		e = term();
 		while (token.getValue().equals("+") || token.getValue().equals("-")) {
-			// TODO TO BE COMPLETED
+			b= new Binary();
+			b.term1=e;
+			b.op= new Operator(token.getValue());
+			token=input.nextToken();
+			b.term2=term();
+			e=b;
 		}
 		return e;
 	}
@@ -216,7 +228,10 @@ public class ConcreteSyntax {
 		e = negation();
 		while (token.getValue().equals("*") || token.getValue().equals("/")) {
 			b = new Binary();
-			// TODO TO BE COMPLETED
+			b.term1=e;
+			b.op= new Operator(token.getValue());
+			token=input.nextToken();
+			b.term2= negation();			
 			e = b;
 		}
 		return e;
