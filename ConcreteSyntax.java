@@ -44,21 +44,21 @@ public class ConcreteSyntax {
 	// Implementation of the Recursive Descent Parser
 
 
-public Program program() {
-    // Program --> main '{' Declarations Statements '}'
-    String[] header = { "main", "{" };
-    Program p = new Program();
-    for (int i = 0; i < header.length; i++)
-        // bypass " main { "
-        match(header[i]);
 
-    p.decpart = declarations();
-    p.body = statements();
-    match("}");
-
-    return p;
-}
-
+	public Program program() {
+		// Program --> main '{' Declarations Statements '}'
+		String[] header = { "void","main", "(", ")","{" };
+		Program p = new Program();
+		for (int i = 0; i < header.length; i++)
+			// bypass " void main () { "
+			match(header[i]);
+	
+		p.decpart = declarations();
+		p.body = statements();
+		match("}");
+	
+		return p;
+	}
 
 	private Declarations declarations() { 
 		// Declarations --> { Declaration }*
