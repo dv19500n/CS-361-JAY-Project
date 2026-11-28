@@ -1,5 +1,6 @@
-main {
-    int i;
-    i = 7;
+void main(){
+    boolean b1;
+    boolean b2;
+    boolean b3;
+    b3 = b1 || b2;
 }
-
