@@ -125,9 +125,9 @@ public class ConcreteSyntax {
 			token = input.nextToken();
 			s = statements();
 			match("}");
-		} else if (token.getValue().equals("if")) // IfStatement
+		} else if (token.getValue().equals("if")){ // IfStatement
 			s = ifStatement();
-		else if (token.getValue().equals("while")) {
+		}else if (token.getValue().equals("while")) {
    			 // WhileStatement
     		s = whileStatement();
 		} else if (token.getType().equals("Identifier")) {
@@ -270,13 +270,13 @@ private Assignment assignment() {
 			token = input.nextToken();
 		} else if (token.getType().equals("Literal")) {
 			Value v = null;
-			if (isInteger(token.getValue()))
+			if (isInteger(token.getValue())){
 				v = new Value((new Integer(token.getValue())).intValue());
-			else if (token.getValue().equals("true"))
+			}else if (token.getValue().equals("true")){
 				v = new Value(true);
-			else if (token.getValue().equals("false"))
+			}else if (token.getValue().equals("false")){
 				v = new Value(false);
-			else
+			}else
 				throw new RuntimeException(SyntaxError("Literal"));
 			e = v;
 			token = input.nextToken();
@@ -309,16 +309,16 @@ private Assignment assignment() {
 
 
 	
-private Loop whileStatement() {
-    // WhileStatement --> while ( Expression ) Statement
-    Loop l = new Loop();
-    match("while");
-    match("(");
-    l.test = expression();
-    match(")");
-    l.body = statement();
-    return l;
-}
+	private Loop whileStatement() {
+	    // WhileStatement --> while ( Expression ) Statement
+	    Loop l = new Loop();
+	    match("while");
+	    match("(");
+	    l.test = expression();
+	    match(")");
+	    l.body = statement();
+	    return l;
+	}
 
 
 	private boolean isInteger(String s) {
